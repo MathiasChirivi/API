@@ -21,7 +21,7 @@ class CitiesSeeder extends Seeder
         Cities::truncate();
         $faker = Faker::create();
 
-        foreach (range(1, 5) as $index) {
+        foreach (range(1, 37) as $index) {
             Cities::create([
                 'name' => $faker->city,
                 'cover' => $faker->imageUrl(),

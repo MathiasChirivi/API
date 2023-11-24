@@ -4,12 +4,12 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Categories;
+use App\Models\Banners;
 
 use Faker\Factory as Faker; // Importa la classe Faker
 
 
-class CategoriesSeeder extends Seeder
+class BannersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,18 +18,19 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        Categories::truncate();
         $faker = Faker::create();
 
+        // Genera dati casuali per la tabella banners
         foreach (range(1, 8) as $index) {
-            Categories::create([
-                'name' => $faker->word,
-                'title_color' => $faker->hexColor,
-                'url_slugs' => $faker->slug,
-                'order_id' => $faker->randomNumber(2),
+            Banners::create([
                 'cover' => $faker->imageUrl(),
-                'translations' => json_encode(['en' => $faker->sentence, 'it' => $faker->sentence]),
-                'extra_field' => $faker->text,
+                'type' => $faker->randomElement([1, 2]),
+                'position' => $faker->numberBetween(1, 3),
+                'value' => $faker->text,
+                'text' => $faker->sentence,
+                'start_time' => $faker->dateTimeBetween('-1 month', '+1 month'),
+                'end_time' => $faker->dateTimeBetween('+2 months', '+6 months'),
+                'extra_field' => $faker->optional()->text,
                 'status' => $faker->randomElement([0, 1]),
                 'created_at' => now(),
                 'updated_at' => now(),

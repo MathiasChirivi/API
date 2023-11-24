@@ -10,6 +10,13 @@ use Carbon\Carbon;
 
 class BannersController extends Controller
 {
+
+    public function getBannersSumm()
+    {
+        $BannersCount = Banners::count();
+        return response()->json($BannersCount);
+    }
+
     public function save(Request $request){
         $validator = Validator::make($request->all(), [
             'cover' => 'required',

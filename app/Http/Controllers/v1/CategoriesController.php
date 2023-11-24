@@ -10,6 +10,12 @@ use Validator;
 
 class CategoriesController extends Controller
 {
+    public function getCategoriesSumm()
+    {
+        $CategoriesSumm = Categories::count();
+        return response()->json($CategoriesSumm);
+    }
+
     public function save(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',

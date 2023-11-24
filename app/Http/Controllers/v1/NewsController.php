@@ -17,6 +17,12 @@ use DB;
 
 class NewsController extends Controller
 {
+    public function getNewsSum()
+    {
+        $newsCount = News::count();
+        return response()->json($newsCount);
+    }
+
     public function save(Request $request){
         $validator = Validator::make($request->all(), [
             'cate_id' => 'required',
@@ -159,39 +165,26 @@ class NewsController extends Controller
 
     public function getAll()
     {
-        try {
-            $data = DB::table('news')->select('news.id as id', 'news.author_id as author_id', 'news.cate_id as cate_id',
-                    'news.city_id as city_id', 'news.comments as comments', 'news.cover as cover', 'news.created_at as created_at',
-                    'news.likes as likes', 'news.sub_cate_id as sub_cate_id', 'news.status as status', 'news.title as title',
-                    'news.updated_at as updated_at', 'news.coordinates as coordinates',
-                    'news.live_url as live_url', 'news.main_characters as main_characters',
-                    'categories.name as cate_name', 'cities.name as city_name',
-                    'users.first_name as author_first_name', 'users.last_name as author_last_name', 'news.translations as translations')
-                ->join('categories', 'news.cate_id', 'categories.id')
-                ->join('cities', 'news.city_id', 'cities.id')
-                ->join('users', 'news.author_id', 'users.id')
-                ->orderBy('news.id', 'desc')
-                ->get();
+        $data = DB::table('news')->select('news.id as id', 'news.author_id as author_id', 'news.cate_id as cate_id',
+                'news.city_id as city_id', 'news.comments as comments', 'news.cover as cover', 'news.created_at as created_at',
+                'news.likes as likes', 'news.sub_cate_id as sub_cate_id', 'news.status as status', 'news.title as title',
+                'news.updated_at as updated_at', 'news.coordinates as coordinates',
+                'news.live_url as live_url', 'news.main_characters as main_characters',
+                'categories.name as cate_name', 'cities.name as city_name',
+                'users.first_name as author_first_name', 'users.last_name as author_last_name', 'news.translations as translations')
+            ->join('categories', 'news.cate_id', 'categories.id')
+            ->join('cities', 'news.city_id', 'cities.id')
+            ->join('users', 'news.author_id', 'users.id')
+            ->orderBy('news.id', 'desc')
+            ->get();
 
-            // Assicurati che $data sia correttamente codificato in UTF-8
-            $data = $data->map(function ($item) {
-                return array_map('utf8_encode', (array)$item);
-            });
+        $response = [
+            'data' => $data,
+            'success' => true,
+            'status' => 200,
+        ];
 
-            $response = [
-                'data' => $data,
-                'success' => true,
-                'status' => 200,
-            ];
-
-            return response()->json($response, 200);
-        } catch (\Exception $e) {
-            // Registra l'eccezione o restituisci un messaggio di errore
-            Log::error($e);
-
-            // Puoi personalizzare il messaggio di errore o restituire uno stato 500 generico
-            return response()->json(['error' => 'Si è verificato un errore durante il recupero dei dati'], 500);
-        }
+        return response()->json($response, 200);
     }
 
     public function getActiveNews(Request $request){
@@ -481,8 +474,8 @@ class NewsController extends Controller
         $data = DB::table('news')->select('news.id as id','news.author_id as author_id','news.cate_id as cate_id',
                         'news.city_id as city_id','news.comments as comments','news.cover as cover','news.created_at as created_at',
                         'news.likes as likes','news.sub_cate_id as sub_cate_id','news.status as status','news.title as title',
-                        'news.updated_at as updated_at','news.coordinates as coordinates', 'news.live_url as live_url',' news.main_characters as main_characters', 
-                        // Aggiunto'categories.name as cate_name','cities.name as city_name',
+                        'news.updated_at as updated_at','news.coordinates as coordinates','news.main_characters as main_characters', 'news.live_url as live_url', 
+                        'categories.name as cate_name','cities.name as city_name',
                         'users.first_name as author_first_name','users.last_name as author_last_name','news.translations as translations')
                 ->join('categories','news.cate_id','categories.id')
                 ->join('cities','news.city_id','cities.id')

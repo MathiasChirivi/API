@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
             PagesSeeder::class,
             NewSeeder::class,
             CategoriesSeeder::class,
-            CitiesSeeder::class
+            CitiesSeeder::class,
+            UsersSeeder::class,
+            BannersSeeder::class,
     ]);
     }
 }

@@ -49,17 +49,22 @@ Route::get('/', function () {
 
 
     Route::get('news/getAll', [NewsController::class, 'getAll']);
-    
-    
-    
-    
+    Route::get('news/getTopNews', [NewsController::class, 'getTopNews']);
+    Route::get('news/getDashboard', [NewsController::class, 'getDashboard']);
+    Route::get('categories/getAll', [CategoriesController::class, 'getAll']);
+    Route::get('banners/getAll', [BannersController::class, 'getAll']);
+    Route::get('/news/sum', [NewsController::class, 'getNewsSum']);
+    Route::get('/banners/sum', [BannersController::class, 'getBannersSumm']);
+    Route::get('/categories/sum', [CategoriesController::class, 'getCategoriesSumm']);
+    Route::get('/cities/sum', [CitiesController::class, 'getCitiesSumm']);
+
     
     
 //     Route::group(['middleware' => ['admin_auth','jwt.auth']],function(){
 //         Route::post('auth/admin_logout',[AuthController::class,'logout']);
 
 //         Route::get('users/getUsers',[AuthController::class,'getUsers']);
-//         Route::get('news/getDashboard', [NewsController::class, 'getDashboard']);
+//         
 
 //         // Cities Routes
 //         Route::get('cities/getAll', [CitiesController::class, 'getAll']);
@@ -74,7 +79,7 @@ Route::get('/', function () {
 //         Route::post('categories/update', [CategoriesController::class, 'update']);
 //         Route::post('categories/updateOrder', [CategoriesController::class, 'updateOrder']);
 //         Route::post('categories/destroy', [CategoriesController::class, 'delete']);
-//          Route::get('categories/getAll', [CategoriesController::class, 'getAll']);
+//          
 
 //         // SubCategoriesController Routes
 //         Route::post('sub_categories/create', [SubCategoriesController::class, 'save']);
@@ -95,7 +100,7 @@ Route::get('/', function () {
 //         Route::post('banners/getById', [BannersController::class, 'getById']);
 //         Route::post('banners/update', [BannersController::class, 'update']);
 //         Route::post('banners/destroy', [BannersController::class, 'delete']);
-//         Route::get('banners/getAll', [BannersController::class, 'getAll']);
+//         
 
 //         // MediasController
 //         Route::post('medias/create', [MediasController::class, 'save']);
@@ -170,6 +175,6 @@ Route::get('/', function () {
 
 //     Route::post('comment/getByNewsId', [NewsCommentsController::class, 'getByNewsId']);
 
-//     Route::get('news/getTopNews', [NewsController::class, 'getTopNews']);
+//     
 //     Route::post('saveToken', [FcmTokenController::class, 'saveToken']);
 // });

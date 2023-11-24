@@ -10,6 +10,13 @@ use DB;
 
 class CitiesController extends Controller
 {
+
+    public function getCitiesSumm()
+    {
+        $CitiesSumm = Cities::count();
+        return response()->json($CitiesSumm);
+    }
+
     public function save(Request $request){
         $validator = Validator::make($request->all(), [
             'cover' => 'required',

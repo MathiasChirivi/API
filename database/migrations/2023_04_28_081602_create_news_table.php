@@ -32,7 +32,7 @@ return new class extends Migration
             $table->text('seo_tags');
             $table->text('extra_field')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->point('coordinates')->nullable(); // colonna per le coordinate
+            $table->string('coordinates')->nullable(); // colonna per le coordinate
             $table->string('live_url')->nullable(); // colonna per l'URL della diretta
             $table->json('main_characters')->nullable(); // colonna per i personaggi principali
             $table->timestamps();

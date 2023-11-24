@@ -19,12 +19,12 @@ class NewSeeder extends Seeder
         News::truncate();
         $faker = Faker::create();
 
-        foreach (range(1, 2) as $index) {
+        foreach (range(1, 20) as $index) {
             News::create([
                 'cate_id' => $faker->numberBetween(1, 1),
                 'city_id' => $faker->numberBetween(1, 1),
                 'sub_cate_id' => $faker->numberBetween(1, 3),
-                'author_id' => $faker->numberBetween(1, 1),
+                'author_id' => $faker->numberBetween(1, 5),
                 'title' => $faker->sentence,
                 'url_slugs' => $faker->slug,
                 'cover' => $faker->imageUrl(),
@@ -38,7 +38,7 @@ class NewSeeder extends Seeder
                 'seo_tags' => $faker->words(5, true),
                 'extra_field' => $faker->optional()->text,
                 'status' => $faker->numberBetween(0, 1),
-                'coordinates' => \DB::raw('POINT(' . $faker->latitude . ', ' . $faker->longitude . ')'),
+                'coordinates' => $faker->latitude . ', ' . $faker->longitude,
                 'live_url' => $faker->url,
                 'main_characters' => $faker->optional()->words(3),
             ]);
