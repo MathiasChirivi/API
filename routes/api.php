@@ -57,7 +57,7 @@ Route::get('/', function () {
     Route::get('/banners/sum', [BannersController::class, 'getBannersSumm']);
     Route::get('/categories/sum', [CategoriesController::class, 'getCategoriesSumm']);
     Route::get('/cities/sum', [CitiesController::class, 'getCitiesSumm']);
-
+    Route::post('news/create', [NewsController::class, 'save']);
     
     
 //     Route::group(['middleware' => ['admin_auth','jwt.auth']],function(){
@@ -90,7 +90,7 @@ Route::get('/', function () {
 //         Route::post('sub_categories/getByCate', [SubCategoriesController::class, 'getByCate']);
 
 //         // NewsController Routes
-//         Route::post('news/create', [NewsController::class, 'save']);
+//         
 //         Route::post('news/getById', [NewsController::class, 'getById']);
 //         Route::post('news/update', [NewsController::class, 'update']);
 //         Route::post('news/destroy', [NewsController::class, 'delete']);
