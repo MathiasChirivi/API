@@ -58,7 +58,11 @@ Route::get('/', function () {
     Route::get('/categories/sum', [CategoriesController::class, 'getCategoriesSumm']);
     Route::get('/cities/sum', [CitiesController::class, 'getCitiesSumm']);
     Route::post('news/create', [NewsController::class, 'save']);
-    
+    Route::get('news/getById', [NewsController::class, 'getById']);
+    Route::post('news/destroy', [NewsController::class, 'delete']);
+    Route::get('cities/getAll', [CitiesController::class, 'getAll']);
+    Route::get('categories/getAll', [CategoriesController::class, 'getAll']);
+    Route::post('news/update', [NewsController::class, 'update']);
     
 //     Route::group(['middleware' => ['admin_auth','jwt.auth']],function(){
 //         Route::post('auth/admin_logout',[AuthController::class,'logout']);
@@ -67,7 +71,6 @@ Route::get('/', function () {
 //         
 
 //         // Cities Routes
-//         Route::get('cities/getAll', [CitiesController::class, 'getAll']);
 //         Route::post('cities/create', [CitiesController::class, 'save']);
 //         Route::post('cities/update', [CitiesController::class, 'update']);
 //         Route::post('cities/destroy', [CitiesController::class, 'delete']);
@@ -91,9 +94,7 @@ Route::get('/', function () {
 
 //         // NewsController Routes
 //         
-//         Route::post('news/getById', [NewsController::class, 'getById']);
-//         Route::post('news/update', [NewsController::class, 'update']);
-//         Route::post('news/destroy', [NewsController::class, 'delete']);
+//         
 
 //         // BannersController Routes
 //         Route::post('banners/create', [BannersController::class, 'save']);

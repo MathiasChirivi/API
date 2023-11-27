@@ -168,6 +168,7 @@ class NewsController extends Controller
         $data = DB::table('news')->select('news.id as id', 'news.author_id as author_id', 'news.cate_id as cate_id',
                 'news.city_id as city_id', 'news.comments as comments', 'news.cover as cover', 'news.created_at as created_at',
                 'news.likes as likes', 'news.sub_cate_id as sub_cate_id', 'news.status as status', 'news.title as title',
+                'news.content as content',
                 'news.updated_at as updated_at', 'news.coordinates as coordinates',
                 'news.live_url as live_url', 'news.main_characters as main_characters',
                 'categories.name as cate_name', 'cities.name as city_name',
