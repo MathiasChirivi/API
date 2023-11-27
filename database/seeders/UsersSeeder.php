@@ -26,7 +26,7 @@ class UsersSeeder extends Seeder
                 'last_name' => $faker->lastName,
                 'cover' => $faker->imageUrl(),
                 'email' => $faker->unique()->safeEmail,
-                'password' => Hash::make('password'), // You might want to change this
+                'password' => Hash::make('password'), 
                 'country_code' => $faker->countryCode,
                 'mobile' => $faker->phoneNumber,
                 'type' => $faker->randomElement([1, 2]),
